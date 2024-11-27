@@ -50,11 +50,13 @@ const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthM
   },
   browserName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
+    defaultValue: 'Unknown Browser',
   },
   deviceType: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
+    defaultValue: 'Unknown Device',
   },
   // otp: {
   //   type: DataTypes.STRING

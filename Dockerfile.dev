@@ -6,6 +6,12 @@ COPY tsconfig.json ./
 COPY .npmrc ./
 COPY src ./src
 RUN ls -a
+# Build-time variable for GitHub Token
+ARG NPM_TOKEN
+
+# Configure npm to authenticate with GitHub Packages
+RUN npm config set @Fallda1:registry https://npm.pkg.github.com/ && \
+    npm config set //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
 RUN npm install && npm install -g nodemon
 
 EXPOSE 4002

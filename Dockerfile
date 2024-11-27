@@ -5,6 +5,12 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY .npmrc ./
 COPY src ./src
+# Pass the build-time variable
+ARG NPM_TOKEN
+
+# Configure npm to use the token
+RUN npm config set @Fallda1:registry https://npm.pkg.github.com/ && \
+    npm config set //npm.pkg.github.com/:_authToken=$NPM_TOKEN
 RUN npm install -g npm@latest
 RUN npm ci && npm run build
 
